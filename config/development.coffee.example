@@ -1,0 +1,18 @@
+exports.app  = {
+  port: 3001
+  errorHandler: true
+  session: {
+    cookieSecret: '
+  }
+}
+exports.db   = {
+  db_name: 'app_dev',
+  username: 'root'
+  password: ''
+  dialect: 'mysql'
+}
+exports.mail = {
+  service: ''
+  user: ''
+  password: ''
+}

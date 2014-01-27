@@ -1,0 +1,27 @@
+{
+  "author": "Greeters.pl",
+  "name": "greeters-api",
+  "description": "API for website greeters.pl",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": "git://github.com/GreetersPL/api",
+  "engines": {
+    "node": "~0.10"
+  },
+  "scripts": {
+    "start": "node api",
+    "test": "./node_modules/karma/bin/karma start "
+  },
+  "dependencies": {
+    "express": "~3.4",
+    "coffee-script": "~1.6",
+    "sequelize": "~1.7.0-rc2",
+    "sequelize-mysql": "~1.7",
+    "bcrypt": "~0.7",
+    "nodemailer": "~0.6.0",
+    "connect-multiparty": "~1.0.3"
+  },
+  "devDependencies": {
+    "sqlite3": "~2.2"
+  }
+}
