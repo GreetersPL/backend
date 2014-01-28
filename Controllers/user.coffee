@@ -1,5 +1,6 @@
 db = require('../db')
 mail = require('../mail')
+helpers = require('../helpers')
 
 exports.create = (req, res)->
   post_user = req.body.user
@@ -21,13 +22,14 @@ exports.create = (req, res)->
   )
 
 exports.index = (req, res) ->
-  where = req.query || {}
-  console.log where
-  db.Models.User.findAll({where: where}).success((users)->
-    res.json(users: users)
-  ).error((error)->
-    res.json(error)
-  )
+  role = helpers.authenticate(req) 
+  if role is false then res.json(msg: 'Authenticate first') else
+    where = req.query || {}
+    db.Models.User.findAll({where: where}).success((users)->
+      res.json(users: users)
+    ).error((error)->
+      res.json(error)
+    )
 
 exports.single = (req, res) ->
   db.Models.User.find(req.params.id).success((user)->
