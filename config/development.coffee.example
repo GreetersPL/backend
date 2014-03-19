@@ -1,25 +1,25 @@
-exports.app  = {
-  port: 3001
-  errorHandler: true
-  session: {
-    cookieSecret: ''
-  }
-  logger:
-    type: ''
-    filename: ''
-}
-exports.db   = {
-  db_name: 'app_dev',
-  username: 'root'
-  password: ''
-  dialect: 'mysql'
-}
-exports.mail = {
-  service: ''
-  user: ''
-  password: ''
-  mail_from: ''
-  mail_hr: ''
-  mail_pr: ''
-  mail_it: ''
+module.exports = {
+  app:
+    ip: ''
+    port: 3001
+    errorHandler: true
+    session: {
+      cookieSecret: 'test'
+    }
+    logger:
+      dev: false
+  db:
+    db_name: 'app_dev',
+    username: 'root'
+    password: ''
+    dialect: 'mysql'
+  mail:
+    service_type: ''
+    service: ''
+    user: ''
+    password: ''
+    mail_from: ''
+    mail_hr: ''
+    mail_pr: ''
+    mail_it: '' 
 }

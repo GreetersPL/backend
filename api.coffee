@@ -19,8 +19,7 @@ api.config = require("./config/" + (process.env.NODE_ENV || 'development'))
 api.set('port', api.config.app.port)
 
 if api.config.app.logger.dev? && api.config.app.logger.dev is false 
-  logfile = require('fs').createWriteStream(api.config.app.logger.filename, {flags: 'a'})
-  api.use(logger(stream: logfile))
+  api.use(logger())
 else
   api.use(logger('dev'))
   
@@ -42,6 +41,6 @@ api.mail = require('./mail')
 require('./router')(api)
 
   
-http.createServer(api).listen(api.get('port'), ->
+http.createServer(api).listen(api.get('port'), api.config.app.ip || '0.0.0.0', ->
   console.log("Express server listening on port " + api.get('port'))
 )
