@@ -1,7 +1,7 @@
 nodemailer = require("nodemailer")
 config = require("./config/" + (process.env.ENV_VARIABLE || 'development')).mail
-console.log(config)
-mail = nodemailer.createTransport("Hotmail", {
+
+mail = nodemailer.createTransport(config.service_type, {
     service: config.service,
     auth: {
       user: config.user,

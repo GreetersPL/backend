@@ -20,14 +20,15 @@
     "bcrypt": "~0.7",
     "nodemailer": "~0.6.0",
     "connect-multiparty": "~1.0.3",
-    "morgan": "^1.0.0",
-    "static-favicon": "^1.0.0",
-    "cookie-parser": "^1.0.1",
-    "connect-redis": "^1.5.0",
-    "express-session": "^1.0.2",
-    "corser": "^1.2.0",
-    "nomnom": "^1.6.2",
-    "body-parser": "^1.0.0"
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "connect-redis": "~1.5.0",
+    "express-session": "~1.0.2",
+    "corser": "~1.2.0",
+    "nomnom": "~1.6.2",
+    "body-parser": "~1.0.0",
+    "errorhandler": "~1.0.0"
   },
   "devDependencies": {
     "sqlite3": "~2.2"

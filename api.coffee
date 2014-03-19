@@ -8,26 +8,37 @@ favicon = require('static-favicon')
 cookieparser = require('cookie-parser')
 corser = require('corser')
 
+
 RedisStore = require('connect-redis')(session)
 
 api = express()
 
 api.config = require("./config/" + (process.env.ENV_VARIABLE || 'development'))
 
+
 api.set('port', api.config.app.port)
-api.use(logger('dev'))
+
+if api.config.app.logger.dev? && api.config.app.logger.dev is false 
+  logfile = require('fs').createWriteStream(api.config.app.logger.filename, {flags: 'a'})
+  api.use(logger(stream: logfile))
+else
+  api.use(logger('dev'))
+  
 api.use(bodyParser())
 api.use(cookieparser('razdwa'));
 api.use(session(store: new RedisStore))
-###  
-api.use(express.errorHandler()) if config.errorHandler? && config.errorHandler
-####
+api.use(require('errorhandler')())
+
+api.use((err, req, res, next)->
+  if !err then next();
+  res.json("Error");
+)
 
 api.use(corser.create())
 
 api.db = require('./db')
 api.mail = require('./mail')
-console.log api.mail
+
 require('./router')(api)
 
   
