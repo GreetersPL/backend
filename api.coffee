@@ -13,7 +13,7 @@ RedisStore = require('connect-redis')(session)
 
 api = express()
 
-api.config = require("./config/" + (process.env.ENV_VARIABLE || 'development'))
+api.config = require("./config/" + (process.env.NODE_ENV || 'development'))
 
 
 api.set('port', api.config.app.port)

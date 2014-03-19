@@ -1,5 +1,5 @@
 nodemailer = require("nodemailer")
-config = require("./config/" + (process.env.ENV_VARIABLE || 'development')).mail
+config = require("./config/" + (process.env.NODE_ENV || 'development')).mail
 
 mail = nodemailer.createTransport(config.service_type, {
     service: config.service,

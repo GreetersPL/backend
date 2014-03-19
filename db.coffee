@@ -1,6 +1,6 @@
 Sequelize = require('sequelize-mysql').sequelize
 mysql     = require('sequelize-mysql').mysql
-config = require("./config/" + (process.env.ENV_VARIABLE || 'development')).db
+config = require("./config/" + (process.env.NODE_ENV || 'development')).db
 
 db = {}
 db.Models = {}
