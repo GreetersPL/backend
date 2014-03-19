@@ -15,4 +15,8 @@ exports.mail = {
   service: ''
   user: ''
   password: ''
+  mail_from: ''
+  mail_hr: ''
+  mail_pr: ''
+  mail_it: ''
 }

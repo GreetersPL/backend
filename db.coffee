@@ -5,9 +5,7 @@ config = require("./config/" + (process.env.ENV_VARIABLE || 'development')).db
 db = {}
 db.Models = {}
 
-sequelize = new Sequelize(config.db_name, config.username, config.password, {
-    dialect: config.dialect
-  })
+sequelize = new Sequelize(config.db_name, config.username, null)
 require("fs").readdirSync('./Models').forEach((Model)->
   model = sequelize.import('./Models/' + Model)
   db.Models[model.name] = model                                                

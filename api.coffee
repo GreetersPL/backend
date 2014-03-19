@@ -1,29 +1,33 @@
 express = require('express')
 http = require('http')
 path = require('path')
+session = require('express-session')
+logger = require('morgan')
+bodyParser = require('body-parser')
+favicon = require('static-favicon')
+cookieparser = require('cookie-parser')
+corser = require('corser')
 
-config = require("./config/" + (process.env.ENV_VARIABLE || 'development')).app
+RedisStore = require('connect-redis')(session)
 
 api = express()
 
+api.config = require("./config/" + (process.env.ENV_VARIABLE || 'development'))
 
-api.set('port', config.port)
-api.use(express.logger('dev'))
-api.use(express.json());
-api.use(express.urlencoded());
-api.use(express.multipart())
-api.use(express.methodOverride())
-api.use(express.cookieParser());
-api.use(express.session({secret: config.session.cookieSecret})) if config.session.cookieSecret?
+api.set('port', api.config.app.port)
+api.use(logger('dev'))
+api.use(bodyParser())
+api.use(cookieparser('razdwa'));
+api.use(session(store: new RedisStore))
+###  
 api.use(express.errorHandler()) if config.errorHandler? && config.errorHandler
+####
 
-              
-api.Controllers = {}
-require("fs").readdirSync("./Controllers").forEach((file) ->
-  name = file.replace('.coffee', '');
-  api.Controllers[name] = require("./Controllers/" + name)
-)
-  
+api.use(corser.create())
+
+api.db = require('./db')
+api.mail = require('./mail')
+console.log api.mail
 require('./router')(api)
 
   
