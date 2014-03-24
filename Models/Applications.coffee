@@ -47,6 +47,10 @@ module.exports = (Sequelize, DataTypes) ->
             notEmpty: false           
           }           
         }
+        expect: {
+          type: DataTypes.ENUM
+          values: ['fun', 'people', 'passion', 'devel','qual', 'other']
+        }
         places: {
            type: DataTypes.TEXT
            validate: {
