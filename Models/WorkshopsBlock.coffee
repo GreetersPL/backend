@@ -6,7 +6,7 @@ module.exports = (Sequelize, DataTypes) ->
       date: 
         type: DataTypes.DATE
         get: ()->
-          moment(@.getDataValue('date')).format('DD-MM-YYYY')
+          moment(@.getDataValue('date')).format('MM/DD/YYYY')
     }, {
       classMethods:
         associate: (models)->

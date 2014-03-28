@@ -6,11 +6,11 @@ module.exports = (Sequelize, DataTypes) ->
       begin: 
         type: DataTypes.DATE
         get: ()->
-          moment(@.getDataValue('begin')).format('DD-MM-YYYY, HH:mm')
+          moment(@.getDataValue('begin')).format('MM/DD/YYYY, HH:mm')
       end: 
         type: DataTypes.DATE
         get: ()->
-          moment(@.getDataValue('end')).format('DD-MM-YYYY, HH:mm')
+          moment(@.getDataValue('end')).format('MM/DD/YYYY, HH:mm')
       limit: DataTypes.INTEGER
     }, {
       instanceMethods:

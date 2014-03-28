@@ -6,11 +6,11 @@ module.exports = (Sequelize, DataTypes) ->
     start: 
       type: DataTypes.DATE
       get: ()->
-        moment(@.getDataValue('start')).format('DD-MM-YYYY')
+        moment(@.getDataValue('start')).format('MM/DD/YYYYY')
     end: 
       type: DataTypes.DATE
       get: ()->
-        moment(@.getDataValue('end')).format('DD-MM-YYYY')
+        moment(@.getDataValue('end')).format('MM/DD/YYYY')
     active: DataTypes.BOOLEAN
   },{
     instanceMethods:
