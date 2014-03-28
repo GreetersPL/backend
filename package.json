@@ -28,7 +28,11 @@
     "corser": "~1.2.0",
     "nomnom": "~1.6.2",
     "body-parser": "~1.0.0",
-    "errorhandler": "~1.0.0"
+    "errorhandler": "~1.0.0",
+    "node-redis": "^0.1.7",
+    "hiredis": "^0.1.16",
+    "lodash": "^2.4.1",
+    "moment": "^2.5.1"
   },
   "devDependencies": {
     "sqlite3": "~2.2"

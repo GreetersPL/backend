@@ -8,7 +8,6 @@ favicon = require('static-favicon')
 cookieparser = require('cookie-parser')
 corser = require('corser')
 
-
 RedisStore = require('connect-redis')(session)
 
 api = express()

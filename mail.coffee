@@ -85,6 +85,17 @@ mail.signupMail = (application, lang = 'pl')->
     @.sendMail(mailOptions, (error, response)->
       console.log (error) if error
     )
+
+  mail.workshopCode = (signup, lang = 'pl')->
+    email2Text = "Witaj #{signup.name}!\nTwój kod zapisu na zajęcia to:  #{signup.code}"
+    mailOptions =
+      from: config.mail_hr
+      to: signup.email
+      subject: 'Kod zapisu na zajęcia'
+      text: email2Text
+    @.sendMail(mailOptions, (error, response)->
+      console.log (error) if error
+    )
     
 module.exports = mail
 ###
