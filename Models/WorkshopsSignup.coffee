@@ -31,6 +31,7 @@ module.exports = (Sequelize, DataTypes) ->
           @.code = code
         confirm: ()->
           @.status = 'active'
+          @.save()
       classMethods:
         associate: (models)->
           WorkshopSignup.belongsTo(models.WorkshopClass, {as: 'Class'})
