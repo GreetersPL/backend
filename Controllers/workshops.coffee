@@ -9,7 +9,7 @@ module.exports = (api) ->
           return res.json(404, {error: 'no code'})
         api.db.Models.WorkshopSignup.findAndCountAll({where: {WorkshopClassID: signup.WorkshopClassID, status: 'active'}}).success((result)->
           if result.count >= 20
-            res.json(404, {error: 'limit'})
+            return res.json(404, {error: 'limit'})
           signup.confirm()
           res.json({status: 'success'})
         )
