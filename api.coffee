@@ -44,8 +44,7 @@ api.use(api.passport.session())
 
 router = require('./router')(express.Router(), api.db, api.passport)
 api.use(router)
-user = {email: "nenros@gmail.com", "bla"}
-api.mail.passwordMail(user, "blabla")  
+
 http.createServer(api).listen(api.get('port'), api.config.app.ip || '0.0.0.0', ->
   console.log("Express server listening on port " + api.get('port'))
 )
