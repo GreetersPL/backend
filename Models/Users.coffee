@@ -56,8 +56,6 @@ module.exports = (Sequelize, DataTypes) ->
       session.username = @.username
       session.name = @.name
       session.lastname = @.lastname
-      session.id = @.id
-      session.region = @.region
       session
 
   })

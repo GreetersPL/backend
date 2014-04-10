@@ -1,7 +1,17 @@
 nodemailer = require("nodemailer")
-config = require("./config/" + (process.env.NODE_ENV || 'development')).mail
+consolidate = require("consolidate")
+templates= {}
 
-mail = nodemailer.createTransport(config.service_type, {
+require("fs").readdirSync('templates/email/').forEach((file)->
+    name = file.split('.');
+    templates[name[0]] = {file: "templates/email/" + file, engine: name[1]}
+  )
+
+
+
+module.exports = (config)->
+
+  mail = nodemailer.createTransport(config.service_type, {
     service: config.service,
     auth: {
       user: config.user,
@@ -10,23 +20,28 @@ mail = nodemailer.createTransport(config.service_type, {
   });
 
   
-mail.passwordMail = (user, password, lang = 'pl')->
+  mail.passwordMail = (user, password, lang = 'pl')->
     email = user.email
     username = user.username
-
+    
     switch lang
-      when "pl" then emailText = "Witaj! \n Twoje konto na portalu greeters.pl zostało utworzone.\nTwój login to: #{username} \nTwoje hasło to #{password} \n\n Do zobaczenia w serwisie"
-      else emailText = "Witaj! \n Twoje konto na portalu greeters.pl zostało utworzone.\nTwój login to: #{username} \nTwoje hasło to #{password} \n\n Do zobaczenia w serwisie"
-    mailOptions =
-      from: 'nenros@gmail.com'
-      to: email
-      subject: 'Hello'
-      text: emailText
-    @.sendMail(mailOptions, (error, response)->
-      console.log (error) if error
+      when "pl" then text = {title: "Konto na stronie Greeters.pl zostało stworzone",text:"Witaj!  Twoje konto na portalu greeters.pl zostało utworzone. Twój login to: #{username} Twoje hasło to #{password}  Do zobaczenia w serwisie"}        
+    consolidate[templates.userCreate.engine](templates.userCreate.file, {text: text}, (err, html)=>
+      mailOptions =
+        from: config.mail_from
+        to: email
+        subject: 'Hello'
+        generateTextFromHTML: true
+        html: html
+      console.log mailOptions
+      @.sendMail(mailOptions, (error, response)->
+        console.log (error) if error
+      )                                       
     )
+    
+    
   
-mail.signupMail = (application, lang = 'pl')->
+  mail.signupMail = (application, lang = 'pl')->
     switch lang
       when "pl" then emailText = "Witaj!\n Twoje zgłoszenie zostało przyjęte, niebawem ktoś się na pewno z tobą skontaktuje! \n Pozdrawiamy\nZespół Greeters Polska"
     mailOptions =
@@ -96,8 +111,10 @@ mail.signupMail = (application, lang = 'pl')->
     @.sendMail(mailOptions, (error, response)->
       console.log (error) if error
     )
-    
-module.exports = mail
+  
+  
+  mail
+
 ###
 mail.passwordMail = (user, password, lang = 'pl')->
   email = user.email

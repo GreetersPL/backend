@@ -2,7 +2,7 @@
   "author": "Greeters.pl",
   "name": "greeters-api",
   "description": "API for website greeters.pl",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "",
   "repository": "git://github.com/GreetersPL/api",
   "engines": {
@@ -19,20 +19,22 @@
     "sequelize-mysql": "~1.7",
     "bcrypt": "~0.7",
     "nodemailer": "~0.6.0",
-    "connect-multiparty": "~1.0.3",
+    "connect-multiparty": "^1.0.3",
     "morgan": "~1.0.0",
     "static-favicon": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "connect-redis": "~1.5.0",
     "express-session": "~1.0.2",
-    "corser": "~1.2.0",
+    "corser": "~2.0.0",
     "nomnom": "~1.6.2",
     "body-parser": "~1.0.0",
     "errorhandler": "~1.0.0",
-    "node-redis": "^0.1.7",
-    "hiredis": "^0.1.16",
+    "redis": "~0.10.1",
+    "hiredis": "~0.1.16",
     "lodash": "^2.4.1",
-    "moment": "^2.5.1"
+    "moment": "^2.5.1",
+    "method-override": "^1.0.0",
+    "then-jade": "^2.0.0"
   },
   "devDependencies": {
     "sqlite3": "~2.2"
