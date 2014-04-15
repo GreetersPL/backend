@@ -28,10 +28,11 @@ api.use(cookieparser('razdwa'));
 api.use(session(store: new RedisStore))
 api.use(require('errorhandler')())
 
-api.use((err, req, res, next)->
+###api.use((err, req, res, next)->
   if !err then next();
   res.json("Error");
 )
+###
 
 api.use(corser.create())
 
@@ -42,7 +43,7 @@ api.mail = require('./libs/mail')(api.config.mail)
 api.use(api.passport.initialize())
 api.use(api.passport.session())
 
-router = require('./router')(express.Router(), api.db, api.passport)
+router = require('./router')(express.Router(), api.db, api.passport, api.mail)
 api.use(router)
 
 http.createServer(api).listen(api.get('port'), api.config.app.ip || '0.0.0.0', ->

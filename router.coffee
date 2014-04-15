@@ -1,8 +1,8 @@
-module.exports = (router, db, passport) ->
+module.exports = (router, db, passport, mail) ->
   Controllers = {}
   require("fs").readdirSync("Controllers").forEach((file) ->
     name = file.replace('.coffee', '');
-    Controllers[name] = require("./Controllers/" + name)(db, passport)                                                   
+    Controllers[name] = require("./Controllers/" + name)(db, passport, mail)                                                   
   )
   
   
@@ -10,6 +10,7 @@ module.exports = (router, db, passport) ->
   router.post '/application', Controllers.application.createApplication
   
   router.post '/login', Controllers.auth.login
+  router.get '/logout', Controllers.auth.logout
   
   
   router.post '/greeter', Controllers.auth.isAuthenticated, Controllers.auth.checkRole(['admin', 'hr']), Controllers.user.create

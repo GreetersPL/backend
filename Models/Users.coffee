@@ -29,9 +29,6 @@ module.exports = (Sequelize, DataTypes) ->
       }
     }
   },
-  classMethods:{
-    
-  }
   instanceMethods: {
     generatePassword: ()->
       set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ'
@@ -56,7 +53,14 @@ module.exports = (Sequelize, DataTypes) ->
       session.username = @.username
       session.name = @.name
       session.lastname = @.lastname
+      session.roles = {}
+      @.roles.forEach((role)->
+          if session.roles[role.RegionId]? then session.roles[role.RegionId].push(role.role) else
+            session.roles[role.RegionId] = [role.role]  
+        )
       session
 
+  }, classMethods: {
+    associate: (models)->
+      User.hasMany(models.Role, {as: 'Roles'})  
   })
-  return User
