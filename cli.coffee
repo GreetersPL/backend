@@ -16,11 +16,11 @@ opts.command('user-add')
       user = db.Models.User.build(user)
       password = user.generatePassword()
       user.save().then(((data)-> 
-          console.log "User created successful"
-          mail.passwordMail(data, password, 'pl', process.exit(code=0))
+          console.log "User created successful"          
+          mail.passwordMail(data, password, 'pl')
         ), (data)-> 
-          if data.code is  "ER_DUP_ENTRY"
-            console.log "Email #{user.email} or username #{user.username} exist in db"
+          console.log data
+          #  console.log "Email #{user.email} or username #{user.username} exist in db"
           process.exit(code=1)
         )
       
@@ -32,7 +32,7 @@ opts.command('user-add')
     })
   .option('username',{
       abbr: 'u'
-      help: "Usernam"
+      help: "Username"
       required: true
     })
   .option('name',{
@@ -99,6 +99,18 @@ opts.command('user-add-role')
     required: true
     })
 
+opts.command('user-list')
+  .callback((options)->
+    db.Models.User.findAll().success((users)->
+      console.log('ID | Mail | Login')
+      users.forEach((user)->
+        console.log user
+      )
+      process.exit(code=0)
+    )
+)
+  
+  
 opts.command('region-add')
   .callback((options)->
     region = {

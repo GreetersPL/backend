@@ -55,8 +55,8 @@ module.exports = (Sequelize, DataTypes) ->
       session.lastname = @.lastname
       session.roles = {}
       @.roles.forEach((role)->
-          if session.roles[role.RegionId]? then session.roles[role.RegionId].push(role.role) else
-            session.roles[role.RegionId] = [role.role]  
+          if session.roles[role.role]? then session.roles[role.role].push(role.RegionId) else
+            session.roles[role.role] = [role.RegionId]
         )
       session
 

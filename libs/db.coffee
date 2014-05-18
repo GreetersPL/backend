@@ -1,12 +1,12 @@
-Sequelize = require('sequelize-mysql').sequelize
-mysql     = require('sequelize-mysql').mysql
+Sequelize = require('sequelize')
+
 redis = require('redis')
 client = redis.createClient()
 module.exports = (config)->
   db = {}
   db.Models = {}
 
-  sequelize = new Sequelize(config.db_name, config.username, config.password || null)
+  sequelize = new Sequelize(config.db_name, config.username, config.password || null, {dialect: config.dialect})
   require("fs").readdirSync('./Models').forEach((Model)->
     model = sequelize.import('../Models/' + Model)
     db.Models[model.name] = model                                                

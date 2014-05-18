@@ -13,7 +13,10 @@ module.exports = (router, db, passport, mail) ->
   router.get '/logout', Controllers.auth.logout
   
   
-  router.post '/greeter', Controllers.auth.isAuthenticated, Controllers.auth.checkRole(['admin', 'hr']), Controllers.user.create
+  router.post '/greeter', Controllers.auth.isAuthenticated, Controllers.auth.checkRole(['hr', 'admin']), Controllers.user.create
+  
+  router.post '/travel', Controllers.travel.create
+  router.get '/travel/:id/reserve', Controllers.auth.isAuthenticated, Controllers.auth.checkRole(['greeter']) 
   ###
   api.get '/', api.Controllers.base.index
   

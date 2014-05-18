@@ -4,8 +4,9 @@ module.exports = (db, mail) ->
     password = user.generatePassword()
     user.save().success((data)->
                          console.log data
-                       ).error((data)->
-                                console.log data
+                       ).error((data)=>
+                                delete data.__raw
+                                res.json(data)
                               )
     
     

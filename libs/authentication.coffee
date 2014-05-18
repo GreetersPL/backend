@@ -15,7 +15,7 @@ module.exports = (db) ->
       User.find(where: {email: email}, include: [{model: db.Models.Role, as: "Roles"}]).success((user)->
         if !user?
           done(null, false, {message: "User not found"})
-        else if bcrypt.compareSync(password, user.password)
+        else if !bcrypt.compareSync(password, user.password)
           done(null, false, "Wrong password")
         else 
           done(null, user, "User logged in")  

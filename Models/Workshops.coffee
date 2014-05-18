@@ -1,4 +1,4 @@
-Q = require 'q'
+
 _ = require 'lodash'
 moment = require 'moment'
 module.exports = (Sequelize, DataTypes) ->

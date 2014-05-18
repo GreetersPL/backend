@@ -1,3 +1,4 @@
+_ = require "lodash"
 module.exports = (api, passport) ->
   login: (req, res)->
     if !req.user?
@@ -18,14 +19,12 @@ module.exports = (api, passport) ->
     req.logout()
     res.json({status: "User logout"})
 
-###
-Check is user authenticated.
-###
   isAuthenticated: (req, res, next)->
-    if req.user then next() else res.json(403, {error: {message: "Need to login"}})    
-  checkRole: (roles = ['greeter'], region=[0], req, res, next)->
-    return (req, res, next)->
-      async = require("async")
-      _ = require "lodash"
-      console.log _.findIndex(req.user.roles[1], "admin")
+    if req.user then next() else res.json(401, {error: {message: "Need to login"}})
       
+  checkRole: (roles = ['greeter'], req, res, next)->
+    return (req, res, next)->
+      region = req.body.region | 1
+      for role, i in roles
+        if _.contains(req.user.roles[role], region) then next() else
+          if i  == (roles.length-1) then res.json(403, {error: {message: "Insufficient permissions"}})

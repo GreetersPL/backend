@@ -23,7 +23,7 @@ module.exports = (config)->
   mail.passwordMail = (user, password, lang = 'pl', cb = null)->
     email = user.email
     username = user.username
-    
+    console.log "blabla"
     switch lang
       when "pl" then text = {title: "Konto na stronie Greeters.pl zostało stworzone",text:"Witaj!  Twoje konto na portalu greeters.pl zostało utworzone. Twój login to: #{username} Twoje hasło to #{password}  Do zobaczenia w serwisie"}        
     consolidate[templates.userCreate.engine](templates.userCreate.file, {text: text}, (err, html)=>
