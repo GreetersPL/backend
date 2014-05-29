@@ -1,0 +1,22 @@
+html
+  p Cześć nazywam się #{walk.name} i szukam kogoś kto mógłby oprowadziś po mieście!
+  p Poszukiwana osoba musi mówić w wybranym z tych języków
+  ul
+    each lang in walk.languages
+      case lang
+        when "eng"
+          li angielsku
+        when "pol"
+          li polsku
+        when "ger"
+          li niemiecku
+        when "rus"
+          li rosyjsku
+  p Zaś w Gdańsku będę w dniach
+  ul
+    each date in walk.dates
+      li= date
+  p Godziny jaki mi odpowiadają to  od #{walk.hourFrom} do #{walk.hourTo}
+  p Jeśli możesz mi pomóc to skontakuj się ze mną pod tym adresem email <a href="mailto:#{walk.email}">#{walk.email}</a>
+  if walk.other
+    p Zaś od siebie chciałbym jeszcze dodać: "#{walk.other}"

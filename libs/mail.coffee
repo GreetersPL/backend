@@ -19,13 +19,23 @@ module.exports = (config)->
     }
   });
 
-  
+  mail.newWalk = (walk)->
+    consolidate[templates.walk.engine](templates.walk.file, {walk}, (err, html)=>
+      mailOptions = {
+        from: config.mail_hr
+        to: config.mail_group
+        subject: "[Zgloszenie][#{walk.id}]Nowe zgłoszenie!"
+        html: html
+      }
+      @.sendMail(mailOptions, (error, response)->
+        console.log (error) if error
+      )
+      )
   mail.passwordMail = (user, password, lang = 'pl', cb = null)->
     email = user.email
     username = user.username
-    console.log "blabla"
     switch lang
-      when "pl" then text = {title: "Konto na stronie Greeters.pl zostało stworzone",text:"Witaj!  Twoje konto na portalu greeters.pl zostało utworzone. Twój login to: #{username} Twoje hasło to #{password}  Do zobaczenia w serwisie"}        
+      when "pl" then text = {title: "Konto na stronie Greeters.pl zostało stworzone",text:"Witaj!  Twoje konto na portalu greeters.pl zostało utworzone. Twój login to: #{username} Twoje hasło to #{password}  Do zobaczenia w serwisie"}
     consolidate[templates.userCreate.engine](templates.userCreate.file, {text: text}, (err, html)=>
       mailOptions =
         from: config.mail_from
@@ -33,15 +43,15 @@ module.exports = (config)->
         subject: 'Hello'
         generateTextFromHTML: true
         html: html
-      
+
       @.sendMail(mailOptions, (error, response)->
         console.log (error) if error
         cb if !cb?
-      )                                       
+      )
     )
-    
-    
-  
+
+
+
   mail.signupMail = (application, lang = 'pl')->
     switch lang
       when "pl" then emailText = "Witaj!\n Twoje zgłoszenie zostało przyjęte, niebawem ktoś się na pewno z tobą skontaktuje! \n Pozdrawiamy\nZespół Greeters Polska"
@@ -112,6 +122,6 @@ module.exports = (config)->
     @.sendMail(mailOptions, (error, response)->
       console.log (error) if error
     )
-  
-  
+
+
   mail

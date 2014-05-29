@@ -16,11 +16,11 @@ api.config = require("./config/" + (process.env.NODE_ENV || 'development'))
 
 api.set('port', api.config.app.port)
 
-if api.config.app.logger.dev? && api.config.app.logger.dev is false 
+if api.config.app.logger.dev? && api.config.app.logger.dev is false
   api.use(logger())
 else
   api.use(logger('dev'))
-  
+
 api.use(require('body-parser')());
 api.use(require('method-override')())
 api.use(require('connect-multiparty')())
