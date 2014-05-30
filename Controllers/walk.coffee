@@ -24,6 +24,7 @@ module.exports = (db, passport, mail) ->
     walk.save().success((walk)=>
         res.json({walk: 'created'})
         mail.newWalk(walk)
-      ).error((error)->
+      ).error((error)=>
+        console.log error
         res.json(400, {walk: 'error'})
-        )
+      )
