@@ -1,4 +1,4 @@
-Q = require 'q'
+
 _ = require 'lodash'
 moment = require 'moment'
 module.exports = (Sequelize, DataTypes) ->
@@ -6,7 +6,7 @@ module.exports = (Sequelize, DataTypes) ->
     start: 
       type: DataTypes.DATE
       get: ()->
-        moment(@.getDataValue('start')).format('MM/DD/YYYYY')
+        moment(@.getDataValue('start')).format('MM/DD/YYYY')
     end: 
       type: DataTypes.DATE
       get: ()->
