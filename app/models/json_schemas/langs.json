@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "array",
+  "items": {
+    "id": "http://jsonschema.net/0",
+    "type": "object",
+    "properties": {
+      "lang": {
+        "id": "http://jsonschema.net/0/lang",
+        "type": "string"
+      },
+      "level": {
+        "id": "http://jsonschema.net/0/level",
+        "type": "string"
+      }
+    },
+    "required": [
+      "lang",
+      "level"
+    ]
+  },
+  "required": ["0"]
+}

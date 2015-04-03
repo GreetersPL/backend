@@ -1,0 +1,26 @@
+en:
+  date:
+    formats:
+      default:
+        "%m/%d/%Y"
+      with_weekday:
+        "%a %m/%d/%y"
+
+  time:
+    formats:
+      default:
+        "%a, %b %-d, %Y at %r"
+      date:
+        "%b %-d, %Y"
+      short:
+        "%B %d"
+
+  titles:
+    application: Greeters-backend
+  signup_mailer:
+    thanks:
+      thanks_for_signup: "Thank for singnup."
+  walk_mailer:
+    inform:
+      new_request: "New request"
+      info: "Additional info"

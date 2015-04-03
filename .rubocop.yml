@@ -1,0 +1,11 @@
+require: rubocop-rspec
+inherit_from: .rubocop_todo.yml
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'node_modules/**/*'
+    - 'db/**/*'
+    - 'config/unicorn.rb'
+    - 'lib/**/*'
+    - 'config/**/*'
+    - 'bower_components/**/*'

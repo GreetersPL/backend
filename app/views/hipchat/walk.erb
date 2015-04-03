@@ -1,0 +1,8 @@
+"<table><thead><td colspan=2><strong><%=I18n.t('hipchat_job.new_walk')%></strong></td></thead>
+    <tr><td><%=Walk.human_attribute_name('name')%></td><td><%=@walk.name%></td></tr>
+    <tr><td><%=Walk.human_attribute_name('email')%></td><td><%=@walk.email%></td></tr>
+    <tr><td><%=Walk.human_attribute_name('dates')%></td><td><%=simple_format(@walk.human_readable_dates)%></td></tr>
+    <tr><td><%=Walk.human_attribute_name('languages')%></td><td><%=simple_format(@walk.human_readable_languages)%></td></tr>
+    <tr><td><%=Walk.human_attribute_name('user_lang')%></td><td><%=I18n.t("langs.#{@walk.user_lang}")%></td></tr>
+    <tr><td><%=Walk.human_attribute_name('created_at')%></td><td><%=@walk.created_at%></td></tr>
+</table>
