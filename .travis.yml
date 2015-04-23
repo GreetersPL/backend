@@ -1,11 +1,10 @@
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
 before_install:
   - "echo '--colour' > ~/.rspec"
   - "echo 'gem: --no-document' > ~/.gemrc"
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
 install:
   - bin/setup
 branches:
