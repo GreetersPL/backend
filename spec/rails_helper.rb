@@ -5,7 +5,6 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 
-CodeClimate::TestReporter.start
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
@@ -22,5 +21,6 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
 end
 
+CodeClimate::TestReporter.start
 ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :webkit
