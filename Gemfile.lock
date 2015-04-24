@@ -137,9 +137,11 @@ GEM
     minitest (5.6.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
+    netrc (0.10.3)
     newrelic_rpm (3.11.2.286)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    oauth (0.4.7)
     parser (2.2.2.1)
       ast (>= 1.1, < 3.0)
     pg (0.18.1)
@@ -189,6 +191,9 @@ GEM
       mail
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.7.3)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rollbar (1.5.1)
       multi_json (~> 1.3)
     rspec-core (3.2.3)
@@ -216,6 +221,12 @@ GEM
       ruby-progressbar (~> 1.4)
     rubocop-rspec (1.3.0)
     ruby-progressbar (1.7.5)
+    ruby-trello (1.2.1)
+      activemodel (>= 3.2.0)
+      addressable (~> 2.3)
+      json
+      oauth (~> 0.4.5)
+      rest-client (~> 1.7.2)
     safe_yaml (1.0.4)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
@@ -300,6 +311,7 @@ DEPENDENCIES
   rspec-rails (~> 3.2.1)
   rubocop
   rubocop-rspec
+  ruby-trello
   shoulda-matchers
   spring
   spring-commands-rspec

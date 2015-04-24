@@ -11,6 +11,7 @@
 #  flow       :hstore
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  trello_url :string
 #
 
 require 'faker'
