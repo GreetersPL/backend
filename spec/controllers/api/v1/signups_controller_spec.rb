@@ -41,6 +41,7 @@ RSpec.describe Api::V1::SignupsController, type: :controller do
         post :create, format: :json, signup: FactoryGirl.attributes_for(:signup).as_json
         expect(response.status).to eq 201
         expect(JSON.parse(response.body).keys).to contain_exactly('id', 'name', 'email', 'age', 'activity', 'source', 'expect', 'why', 'places', 'languages', 'created_at')
+        expect(WebMock).to have_requested(:post, /api.hipchat.com/)
       end
     end
   end

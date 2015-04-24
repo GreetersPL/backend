@@ -38,21 +38,17 @@ RSpec.describe Walk, type: :model do
       expect(FactoryGirl.build(:walk, dates: 'nil')).to_not be_valid
     end
 
-    it 'should have from key in json' do
-      expect(FactoryGirl.build(:walk, dates: [{date: (Time.zone.today + Faker::Number.number(1).to_i.days), to: '10:00'}])).to_not be_valid
+    it 'has from key in json' do
+      expect(FactoryGirl.build(:walk, dates: [{ date: (Time.zone.today + Faker::Number.number(1).to_i.days), to: '10:00' }])).to_not be_valid
     end
 
-    it 'should have date key in json' do
-      expect(FactoryGirl.build(:walk, dates: [{from:'8:00', to: '10:00'}])).to_not be_valid
+    it 'has date key in json' do
+      expect(FactoryGirl.build(:walk, dates: [{ from: '8:00', to: '10:00' }])).to_not be_valid
     end
 
-    it 'should have bigger hour to than from' do
-      expect(FactoryGirl.build(:walk, dates: [{date: (Time.zone.today + Faker::Number.number(1).to_i.days), to: '10:00', from: '13:00'}])).to_not be_valid
+    it 'has bigger hour to than from' do
+      expect(FactoryGirl.build(:walk, dates: [{ date: (Time.zone.today + Faker::Number.number(1).to_i.days), to: '10:00', from: '13:00' }])).to_not be_valid
     end
-  end
-
-  it 'field languages have to be json' do
-    expect(FactoryGirl.build(:walk, languages: 'test')).to_not be_valid
   end
 
   it 'is invalid without languages' do

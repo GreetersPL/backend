@@ -11,7 +11,13 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before(:each) do
+    stub_request(:any, /api.hipchat*/)
+      .with(headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' })
+      .to_return(status: 200, body: '', headers: {})
+  end
+
   config.order = :random
 end
 
-WebMock.disable_net_connect!(allow_localhost: true,:allow => "codeclimate.com")
+WebMock.disable_net_connect!(allow_localhost: true, allow: 'codeclimate.com')

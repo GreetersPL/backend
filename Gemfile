@@ -19,6 +19,8 @@ gem 'enumerize'
 gem 'rack-cors', require: 'rack/cors'
 gem 'annotate', '~> 2.6.6'
 gem 'hipchat'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'rollbar', '~> 1.5.1'
 
 group :development do
   gem 'spring'
@@ -47,7 +49,7 @@ group :test do
   gem 'timecop'
   gem 'webmock'
   gem 'faker'
-  gem "codeclimate-test-reporter"
+  gem 'codeclimate-test-reporter'
 end
 
 group :staging, :production do

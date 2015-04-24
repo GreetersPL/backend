@@ -40,6 +40,6 @@ class DatesJsonSchemaValidator < ActiveModel::EachValidator
   end
 
   def validate_key_occurrence(value)
-    %w[date from to].all? { |key| value.key?(key) }
+    %w(date from to).all? { |key| value.key?(key) }
   end
 end

@@ -31,6 +31,10 @@ class Signup < ActiveRecord::Base
   before_create :add_create_flow
   after_create :inform_hr, :thanks_for_registration
 
+  def add_flow(message)
+    flow[Time.new.to_s] = message
+  end
+
   private
 
   def add_create_flow
