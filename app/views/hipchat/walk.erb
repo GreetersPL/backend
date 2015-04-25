@@ -31,7 +31,7 @@
       <td><%=Walk.human_attribute_name('user_lang')%></td><td><%=I18n.t("langs.#{@walk.user_lang}")%></td>
       </tr>
     <tr>
-        <td colspan="2"><%=link_to Walk.human_attribute_name('trello_url'), @walk.trello_url %></td>
+        <td colspan="2"><a href="<%= @walk.trello_url %>"><%= Walk.human_attribute_name('trello_url')%> </a></td>
     </tr>
     <tr>
       <td><%=Walk.human_attribute_name('created_at')%></td><td><%= l @walk.created_at%></td>

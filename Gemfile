@@ -22,6 +22,7 @@ gem 'hipchat'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'rollbar', '~> 1.5.1'
 gem 'ruby-trello'
+gem 'daemons'
 
 group :development do
   gem 'spring'

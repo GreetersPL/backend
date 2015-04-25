@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe TrelloJobJob, type: :job do
+RSpec.describe TrelloJob, type: :job do
   pending "add some examples to (or delete) #{__FILE__}"
 end

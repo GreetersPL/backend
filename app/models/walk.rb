@@ -18,9 +18,8 @@
 class Walk < ActiveRecord::Base
   before_create :add_create_flow
   after_create :post_to_trello
-  define_model_callbacks :trello_post, :only => [:after]
+  define_model_callbacks :trello_post, only: [:after]
   after_trello_post :inform_greeters
-
 
   validates :name, :email, :dates, :languages, presence: true
   validates :email, email: true
@@ -32,7 +31,7 @@ class Walk < ActiveRecord::Base
   end
 
   def trello_url=(url)
-    write_attribute('trello_url', url)
+    self['trello_url'] = url
     run_callbacks :trello_post
   end
 
