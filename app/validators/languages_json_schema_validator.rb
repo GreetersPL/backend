@@ -17,6 +17,6 @@ class LanguagesJsonSchemaValidator < ActiveModel::EachValidator
 
   def validate_elem(value)
     add_error 'each object should have "language" and "level" key' unless value.is_a?(Hash) && value.key?('language') && value.key?('level')
-    add_error 'allowed level values: intermidiate, begginer, advanced' unless %w(intermidiate begginer advanced).include? value['level']
+    add_error 'allowed level values: intermediate, beginner, advanced' unless %w(intermediate beginner advanced).include? value['level']
   end
 end
