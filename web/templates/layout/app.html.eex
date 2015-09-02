@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hello Phoenix!</title>
+  <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+</head>
+
+<body>
+  <header>
+    <h1>Greeters Polska</h1>
+    <img src="<%= static_path(@conn, "/images/logo.png") %>">
+  </header>
+  <section>
+    <h3>Dostępne języki</h3>
+    <ul>
+      <li>pl</li>
+      <li>en</en>
+    </ul>
+  </section>
+
+  <nav>
+    <ul>
+      <li>Strona główna</li>
+      <li>F.A.Q</li>
+      <li>Szukaj</li>
+      <li>Zgłoś się</li>
+    </ul>
+  </nav>
+
+  <p class="alert alert-info" role="alert">
+    <%= get_flash(@conn, :info) %>
+  </p>
+  <p class="alert alert-danger" role="alert">
+    <%= get_flash(@conn, :error) %>
+  </p>
+  <main>
+    <%= @inner %>
+  </main>
+  <footer>
+    <div data-href="http://www.facebook.com/greeterspolska" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false">
+      <a href="http://www.mlodziez.org.pl/">
+        <span>Młodzież w działaniu</span>
+        <img src="<%= static_path(@conn, "/images/mwd.png") %>" alt="Młodzież w działaniu">
+      </a>
+      <a href="http://www.flavionote.keed.pl/">
+        <span>Harcerski Krąg Akademicki 'Flavio Note'
+          <span>
+            <img src="<%= static_path(@conn, "/images/flavio.png") %>" alt="Harcerski Krąg Akademicki 'Flavio Note'">
+      </a>
+      <a href="http://www.gdanska.zhp.pl/">
+        <span>Chorągiew Gdańska</span>
+        <img src="<%= static_path(@conn, "/images/choragiew.png") %>" alt="Chorągiew Gdańska">
+      </a>
+  </footer>
+  <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+</body>
+
+</html>

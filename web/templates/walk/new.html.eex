@@ -1,0 +1,41 @@
+<div ng-app="searchApp">
+<h2>New walk</h2>
+<div ng-controller="SearchCtrl" ng-init="csrf='<%= get_csrf_token() %>'">
+<%= form_for @changeset, nil, [id: :walk_form, csrf_token: false, ng_submit: "submit()", name: :walkForm, as: :search], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below:</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= label f, :name, "Name", class: "control-label" %>
+    <%= text_input f, :name, class: "form-control", ng_model: "walk['name']"%>
+    <div ng-messages="walkForm['search[name]'].$error" role="alert">
+      <span ng-message="required">wymagane</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :email, "Email", class: "control-label" %>
+    <%= text_input f, :email, class: "form-control", ng_model: "walk['email']"%>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :additional, "Additional", class: "control-label" %>
+    <%= text_input f, :additional, class: "form-control", ng_model: "walk['additional']" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+</div>
+<script src="<%= static_path(@conn, "/js/search.js") %>">
+require('web/static/ng/search');
+</script>
