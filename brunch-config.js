@@ -8,9 +8,10 @@ exports.config = {
           '/bower_components/material-design-lite/material.js'
         ],
         'js/search.js': [
-          /(web\/static\/ng)/,
-          '/bower_components/angular/angular.js',
-          '/bower_components/angular-messages/angular-messages.js'
+          'bower_components/angular/angular.js',
+          'bower_components/angular-messages/angular-messages.js',
+          /(web\/static\/ng)/
+
 
         ]
       }

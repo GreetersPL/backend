@@ -1,7 +1,7 @@
 class searchCtrl {
 	constructor($scope, $http){
 		$scope.walk ={
-			languages: {},
+			languages: [],
 			dates: {}
 		}
 		$scope.form = this.walkForm
@@ -14,8 +14,19 @@ class searchCtrl {
 				$http.post('', req).then(function(res){
 					console.log(res)
 				}).catch((res)=>{
-					console.log(this)
-					this.walkForm['search[name]'].$setValidity('required', false)
+					for(var k in res.data){
+						var input = this.walkForm['search['+k+']']
+						for(var i of res.data[k]){
+								switch(i){
+									case "can't be blank":
+										input.$setValidity('required', false);
+										break;
+									default:
+										input.$setValidity('other', false);
+										break;
+								}
+						}
+					}
 				})
 			}
 	}

@@ -1,0 +1,28 @@
+<script id="langTable" type="text/ng-template">
+  <table>
+    <thead>
+      <th>Język</th>
+      <th>Podstawowy</th>
+      <th>Komunikatywny</th>
+      <th>Zaawansowany</th>
+      <th>Usuń</th>
+    </thead>
+    <tr ng-repeat="lang in vm.languages">
+      <td>{{lang.language}}</td>
+      <td><input ng-model="lang.level" type="radio" value="beginner"></td>
+      <td><input ng-model="lang.level" type="radio" value="intermediate"></td>
+      <td><input ng-model="lang.level" type="radio" value="advanced"></td>
+      <td>
+        <span ng-click="vm.removeLang(lang)"></span>
+      </td>
+    </tr>
+  </table>
+
+  <ng-messages for="vm.langToAdd.$error">
+    <ng-message when="already_exist">
+      <div class="alert alert-danger" role="alert"></div>
+    </ng-message>
+  </ng-messages>
+  <input ng-model="langToAdd">
+  <button ng-click="vm.addLang()" type="button">Dodaj język</button>
+</script>
