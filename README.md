@@ -1,5 +1,7 @@
 # GreetersBackend
 
+[![Circle CI](https://circleci.com/gh/GreetersPL/engine.svg?style=svg)](https://circleci.com/gh/GreetersPL/engine)
+
 To start your Phoenix app:
 
   1. Install dependencies with `mix deps.get`
