@@ -1,0 +1,11 @@
+<script type="text/ng-template" id="datesTable">
+        <div pickadate multiple no-extra-rows min-date="todayDate" ng-model="choosenDates"></div>
+            <table>
+                <thead><th>Data</th><th>godzina od</th><th>godzina do</th></thead>
+                <tr ng-repeat="date in vm.dates">
+                    <td>{{date.date}}</td>
+                    <td><hour-picker ng-model="date.from" ng-max="date.to" /></td>
+                    <td><hour-picker ng-model="date.to" ng-min="date.from" /></td>
+                </tr>
+            </table>
+</script>

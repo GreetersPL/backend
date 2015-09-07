@@ -13,6 +13,14 @@ class LangTable{
       vm.addLang = function(){
         vm.languages.push({language: $scope.langToAdd, level: "intermediate"})
       }
+      vm.removeLang = function(lang){
+        for(var i in vm.language){
+          if(lang.languages == vm.languages[i].language){
+            vm.languages = vm.languages.slice(i);
+            return
+          }
+        }
+      }
     }];
   }
 

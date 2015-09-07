@@ -16,7 +16,8 @@
   "dependencies": {
     "angular": "~1.4.5",
     "angular-messages": "~1.4.5",
-    "material-design-lite": "~1.0.4"
+    "material-design-lite": "~1.0.4",
+    "angular-pickadate": "~1.1.0"
   },
   "overrides": {
     "material-design-lite": {

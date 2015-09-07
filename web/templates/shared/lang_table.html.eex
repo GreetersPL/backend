@@ -13,7 +13,7 @@
       <td><input ng-model="lang.level" type="radio" value="intermediate"></td>
       <td><input ng-model="lang.level" type="radio" value="advanced"></td>
       <td>
-        <span ng-click="vm.removeLang(lang)"></span>
+        <span ng-click="vm.removeLang(lang)">Usuń</span>
       </td>
     </tr>
   </table>

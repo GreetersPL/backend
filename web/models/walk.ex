@@ -9,12 +9,14 @@ defmodule GreetersBackend.Walk do
     field :email, :string
     field :additional, :string
     embeds_many :flow, GreetersBackend.Flow
+    embeds_many :languages, GreetersBackend.Language
+    embeds_many :dates, GreetersBackend.Date
 
     timestamps
   end
 
-  @required_fields ~w(name email additional)
-  @optional_fields ~w()
+  @required_fields ~w(name email languages dates)
+  @optional_fields ~w(additional)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -29,7 +31,7 @@ defmodule GreetersBackend.Walk do
 
   def add_flow__create_record(changeset) do
     changeset
-    |> Ecto.Changeset.put_change(:flow, [%GreetersBackend.Flow{date: Ecto.DateTime.local(), operation: "Record created"}])
+    |> GreetersBackend.Flow.add_to_flow("Record created")
   end
 
 end

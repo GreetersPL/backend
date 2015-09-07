@@ -10,6 +10,7 @@ exports.config = {
         'js/search.js': [
           'bower_components/angular/angular.js',
           'bower_components/angular-messages/angular-messages.js',
+          'bower_components/angular-pickadate/dist/angular-pickadate.js',
           /(web\/static\/ng)/
 
 

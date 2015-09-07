@@ -2,7 +2,7 @@ class searchCtrl {
 	constructor($scope, $http){
 		$scope.walk ={
 			languages: [],
-			dates: {}
+			dates: []
 		}
 		$scope.form = this.walkForm
 		$scope.submit = function(){
