@@ -9,6 +9,8 @@ defmodule GreetersBackend.Mixfile do
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: [coveralls: :test],
      deps: deps]
   end
 
@@ -35,7 +37,8 @@ defmodule GreetersBackend.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:phoenix_linguist, "~> 0.0.1"}
+     {:phoenix_linguist, "~> 0.0.1"},
+     {:excoveralls, "~> 0.3", only: :test}
    ]
   end
 end
