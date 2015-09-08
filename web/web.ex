@@ -43,7 +43,7 @@ defmodule GreetersBackend.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
+      import GreetersBackend.I18n
       import GreetersBackend.Router.Helpers
     end
   end
