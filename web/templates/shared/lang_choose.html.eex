@@ -1,0 +1,13 @@
+
+<section>
+  <h3><%= t!(actual_lang(@conn), "avaiable_langs") %></h3>
+  <ul>
+<%= for lang <- enabled_langs do %>
+<li class="<%= lang %> <%= if lang == actual_lang(@conn), do: 'active' %>">
+  <a href="<%= actual_page_lang_path(lang, @conn) %>">
+    <%=t!(actual_lang(@conn), "langs.#{lang}")%>
+  </a>
+</li>
+<% end %>
+</ul>
+</section>

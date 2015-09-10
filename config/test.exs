@@ -4,7 +4,9 @@ use Mix.Config
 # you can enable the server option below.
 config :greeters_backend, GreetersBackend.Endpoint,
   http: [port: 4001],
-  server: false
+  server: false,
+  default_lang: "en"
+
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -12,7 +14,5 @@ config :logger, level: :warn
 # Configure your database
 config :greeters_backend, GreetersBackend.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "greeters_backend_test",
   pool: Ecto.Adapters.SQL.Sandbox

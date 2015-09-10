@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= actual_lang(@conn) %>">
 
 <head>
   <meta charset="utf-8">
@@ -8,31 +8,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Hello Phoenix!</title>
+  <title><%= get_page_title(@conn)%></title>
   <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 </head>
 
 <body>
   <header>
-    <h1>Greeters Polska</h1>
+    <h1><%= t!(actual_lang(@conn), "greeters_poland")%></h1>
     <img src="<%= static_path(@conn, "/images/logo.png") %>">
   </header>
-  <section>
-    <h3>Dostępne języki</h3>
-    <ul>
-      <li>pl</li>
-      <li>en</en>
-    </ul>
-  </section>
 
-  <nav>
-    <ul>
-      <li>Strona główna</li>
-      <li>F.A.Q</li>
-      <li>Szukaj</li>
-      <li>Zgłoś się</li>
-    </ul>
-  </nav>
+    <%= render GreetersBackend.SharedView, "lang_choose.html", conn: @conn %>
+    <%= render GreetersBackend.SharedView, "navbar.html", conn: @conn %>
 
   <p class="alert alert-info" role="alert">
     <%= get_flash(@conn, :info) %>
@@ -44,7 +31,7 @@
     <%= @inner %>
   </main>
   <footer>
-    <div data-href="http://www.facebook.com/greeterspolska" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false">
+    <div data-href="http://www.facebook.com/greeterspolska" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
       <a href="http://www.mlodziez.org.pl/">
         <span>Młodzież w działaniu</span>
         <img src="<%= static_path(@conn, "/images/mwd.png") %>" alt="Młodzież w działaniu">

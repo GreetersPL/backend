@@ -7,8 +7,14 @@ defmodule GreetersBackend.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug GreetersBackend.Plugs.Locale, GreetersBackend.I18n.default_lang
   end
 
+  for locale <- GreetersBackend.I18n.other_langs do
+    pipeline String.to_atom "locale_#{locale}" do
+      plug GreetersBackend.Plugs.Locale, locale
+    end
+  end
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -21,16 +27,18 @@ defmodule GreetersBackend.Router do
     get "/", PageController, :index
     get "/szukaj", WalkController, :new
     post "/szukaj", WalkController, :create
-    
+
     for locale <- GreetersBackend.I18n.other_langs do
-      get "/#{locale}", PageController, :index
-      get "/#{locale}/#{GreetersBackend.I18n.t!(locale, "routes.faq")}", PageController, :faq
-      get "/#{locale}/#{GreetersBackend.I18n.t!(locale, "routes.about")}", PageController, :about
-      get "/#{locale}/#{GreetersBackend.I18n.t!(locale, "routes.contact")}", PageController, :contact
+      scope "/#{locale}", as: locale do
+        pipe_through [String.to_atom("locale_#{locale}")]
+        get "/", PageController, :index
+        get "/#{GreetersBackend.I18n.t!(locale, "routes.faq")}", PageController, :faq
+        get "/#{GreetersBackend.I18n.t!(locale, "routes.about")}", PageController, :about
+        get "/#{GreetersBackend.I18n.t!(locale, "routes.contact")}", PageController, :contact
 
-      get "/#{locale}/#{GreetersBackend.I18n.t!(locale, "routes.search")}" , WalkController, :new
-      post "/#{locale}/#{GreetersBackend.I18n.t!(locale, "routes.search")}" , WalkController, :create
-
+        get "/#{GreetersBackend.I18n.t!(locale, "routes.search")}" , WalkController, :new
+        post "/#{GreetersBackend.I18n.t!(locale, "routes.search")}" , WalkController, :create
+      end
 
     end
 

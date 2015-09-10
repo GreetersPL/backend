@@ -8,7 +8,8 @@ defmodule GreetersBackend.WalkController do
 
   def new(conn, _params) do
     changeset = Walk.changeset(%Walk{})
-    render(conn, "new.html", changeset: changeset)
+    assign(conn, :page_title, 'search')
+    |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"walk" => walk_params}) do

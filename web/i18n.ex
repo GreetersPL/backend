@@ -11,4 +11,13 @@ defmodule GreetersBackend.I18n do
   def other_langs do
     GreetersBackend.I18n.locales |> Enum.filter(fn(locale)-> locale !== default_lang  end)
   end
+
+  def actual_lang(conn) do
+    conn.assigns.locale
+  end
+
+  def enabled_langs do
+    GreetersBackend.I18n.locales
+  end
+  
 end
