@@ -3,11 +3,9 @@
   <h3><%= t!(actual_lang(@conn), "avaiable_langs") %></h3>
   <ul>
 <%= for lang <- enabled_langs do %>
-<li class="<%= lang %> <%= if lang == actual_lang(@conn), do: 'active' %>">
-  <a href="<%= actual_page_lang_path(lang, @conn) %>">
-    <%=t!(actual_lang(@conn), "langs.#{lang}")%>
-  </a>
-</li>
-<% end %>
+  <%= content_tag :li, class: is_active_lang(@conn, lang) do %>
+    <%= link(t!(actual_lang(@conn), "langs.#{lang}"), to: actual_page_lang_path(lang, @conn))%>
+  <%= end %>
+<%= end %>
 </ul>
 </section>

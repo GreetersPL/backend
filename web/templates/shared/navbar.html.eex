@@ -1,7 +1,9 @@
 <nav>
   <ul>
     <%= for {controller, function, name} <- navbar do %>
-      <li class="<%= is_actual_page(@conn, controller, function) %>"><a href="<%= get_page_url(actual_lang(@conn), controller, function)%>"><%= t!(actual_lang(@conn), "navbar.#{name}") %></a></li>
+      <%= content_tag :li, class: is_actual_page(@conn, controller, function)  do %>
+        <%= link(t!(actual_lang(@conn), "navbar.#{name}"), to: get_page_url(actual_lang(@conn), controller, function))%>
+      <%= end %>
     <%=  end %>
   </ul>
 </nav>

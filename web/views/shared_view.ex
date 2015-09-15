@@ -19,6 +19,13 @@ defmodule GreetersBackend.SharedView do
     get_page_url(lang, controller, Phoenix.Controller.action_name(conn) )
   end
 
+  def is_active_lang(conn, lang) do
+    case(GreetersBackend.I18n.actual_lang(conn) == lang) do
+      true -> "active"
+      _ -> ""
+    end
+  end
+
   def is_actual_page(conn, controller, function) do
     actual_controller = conn
       |> Phoenix.Controller.controller_module
