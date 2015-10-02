@@ -20,5 +20,10 @@
   langs: [
     pl: "Polski",
     en: "Angielski"
+  ],
+  lang_level: [
+    beginner: "początkujący",
+    intermediate: "średnio",
+    advanced: "zaawansowany"
   ]
 ]

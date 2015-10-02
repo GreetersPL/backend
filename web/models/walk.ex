@@ -1,7 +1,7 @@
 defmodule GreetersBackend.Walk do
   use GreetersBackend.Web, :model
-
   before_insert :add_flow__create_record
+  after_insert :inform_on_channel__create_record
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "walks" do
@@ -15,8 +15,8 @@ defmodule GreetersBackend.Walk do
     timestamps
   end
 
-  @required_fields ~w(name email languages dates)
-  @optional_fields ~w(additional)
+  @required_fields ~w(name email)
+  @optional_fields ~w(additional languages dates)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -32,6 +32,12 @@ defmodule GreetersBackend.Walk do
   def add_flow__create_record(changeset) do
     changeset
     |> GreetersBackend.Flow.add_to_flow("Record created")
+  end
+
+  def inform_on_channel__create_record(changeset) do
+    changeset = %{changeset| action: :update, changes: %{}}
+    GenServer.cast(:informer_server, {:walk, changeset})
+    changeset
   end
 
 end
