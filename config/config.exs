@@ -12,7 +12,8 @@ config :greeters_backend, GreetersBackend.Endpoint,
   secret_key_base: "nUrWAD8cWVgVvOJPfY1JjXVyngnSKl8CXsl3G9SjvhM390Ytf2dgETBkEsimf3rk",
   render_errors: [default_format: "html"],
   pubsub: [name: GreetersBackend.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  walk_hook: "Hook from slack"         
 
 # Configures Elixir's Logger
 config :logger, :console,

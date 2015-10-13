@@ -35,8 +35,8 @@ defmodule GreetersBackend.Walk do
   end
 
   def inform_on_channel__create_record(changeset) do
-    changeset = %{changeset| action: :update, changes: %{}}
-    GenServer.cast(:informer_server, {:walk, changeset})
+    %{changeset| action: :update, changes: %{}}
+     |> GreetersBackend.Informer.GenServer.inform_new_walk
     changeset
   end
 

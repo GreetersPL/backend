@@ -25,7 +25,7 @@ defmodule GreetersBackend do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    GenServer.call(SlackServer, :walk)
+    GreetersBackend.Endpoint.config_change(changed, removed)
     :ok
   end
 end

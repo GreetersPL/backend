@@ -1,6 +1,7 @@
 defmodule GreetersBackend.Slack.Webhook do
   use HTTPoison.Base
   @webhook_url "https://hooks.slack.com/services/"
+  @walk_hook Application.get_env(:greeters_backend, GreetersBackend.Endpoint)[:walk_hook]
 
   def process_url(url) do
     @webhook_url <> url
@@ -8,7 +9,7 @@ defmodule GreetersBackend.Slack.Webhook do
 
   def send_webhook(_elem, changeset) do
     payload = _create_walk_payload(changeset)
-    GreetersBackend.Slack.Webhook.post(Application.get_env(:greeters_backend, GreetersBackend.Endpoint)[:walk_hook], payload)
+    GreetersBackend.Slack.Webhook.post(@walk_hook, payload)
   end
 
   defp process_request_body(body) do
