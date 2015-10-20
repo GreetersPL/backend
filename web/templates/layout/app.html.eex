@@ -16,6 +16,7 @@
   <header>
     <h1><%= t!(actual_lang(@conn), "greeters_poland")%></h1>
     <img src="<%= static_path(@conn, "/images/logo.png") %>">
+    <h2>Test</h2>
   </header>
 
     <%= render GreetersBackend.SharedView, "lang_choose.html", conn: @conn %>
