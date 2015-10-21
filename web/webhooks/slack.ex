@@ -1,4 +1,4 @@
-defmodule GreetersBackend.Slack.Webhook do
+defmodule GreetersBackend.Webhooks.Slack do
   use HTTPoison.Base
   @webhook_url "https://hooks.slack.com/services/"
   @walk_hook Application.get_env(:greeters_backend, GreetersBackend.Endpoint)[:walk_hook]
@@ -7,9 +7,9 @@ defmodule GreetersBackend.Slack.Webhook do
     @webhook_url <> url
   end
 
-  def send_webhook(_elem, changeset) do
+  def send_webhook(changeset) do
     payload = _create_walk_payload(changeset)
-    GreetersBackend.Slack.Webhook.post(@walk_hook, payload)
+    post(@walk_hook, payload)
   end
 
   defp process_request_body(body) do
@@ -43,6 +43,9 @@ defmodule GreetersBackend.Slack.Webhook do
             }, %{
               title: "Terminy",
               value: dates
+              }, %{
+                title: "Link do Treelo",
+                value: Ecto.Changeset.get_field(changeset, :trello_uri)
               }
           ]
       }]

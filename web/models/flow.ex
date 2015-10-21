@@ -20,13 +20,13 @@ defmodule GreetersBackend.Flow do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def add_to_flow(changeset ,message) do
+  def add_to_flow(changeset, message) do
     Ecto.Changeset.get_field(changeset, :flow)
     |> _add_to_flow(changeset, message)
   end
 
   defp _add_to_flow(flow, changeset, message) when is_list(flow) do
-    Ecto.Changeset.put_change(changeset, :flow, flow++[%GreetersBackend.Flow{date: Ecto.DateTime.local(), operation: message }])
+    Ecto.Changeset.put_change(changeset, :flow,  flow ++ [%GreetersBackend.Flow{date: Ecto.DateTime.local(), operation: message }])
   end
 
 end
