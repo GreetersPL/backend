@@ -11,7 +11,7 @@ defmodule GreetersBackend do
       supervisor(GreetersBackend.Endpoint, []),
       # Start the Ecto repository
       worker(GreetersBackend.Repo, []),
-      worker(GreetersBackend.Informer, [[],[name: :informer_server]])
+      supervisor(Task.Supervisor, [[name: Informer.Supervisor]])
       # Here you could define other workers and supervisors as children
       # worker(GreetersBackend.Worker, [arg1, arg2, arg3]),
     ]
@@ -25,7 +25,7 @@ defmodule GreetersBackend do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    GenServer.call(SlackServer, :walk)
+    GreetersBackend.Endpoint.config_change(changed, removed)
     :ok
   end
 end
