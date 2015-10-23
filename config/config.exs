@@ -13,7 +13,10 @@ config :greeters_backend, GreetersBackend.Endpoint,
   render_errors: [default_format: "html"],
   pubsub: [name: GreetersBackend.PubSub,
            adapter: Phoenix.PubSub.PG2],
-  walk_hook: "Hook from slack"         
+  walk_hook: "Hook from slack",
+  trello_api_key: "Here write trello api key",
+  trello_api_token: "Here write trello api token",
+  trello_list_id: "And find board id for new walks"
 
 # Configures Elixir's Logger
 config :logger, :console,

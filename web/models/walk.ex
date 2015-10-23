@@ -1,6 +1,6 @@
 defmodule GreetersBackend.Walk do
   use GreetersBackend.Web, :model
-  import Logger
+  require Logger
   before_insert :add_flow__create_record
   after_insert :inform_on_channels__create_record
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -38,13 +38,22 @@ defmodule GreetersBackend.Walk do
   end
 
   def inform_on_channels__create_record(changeset) do
-    id = %{changeset| changes: %{}}
-    |> Ecto.Changeset.get_field(:id)
-    Task.Supervisor.start_child(Informer.Supervisor, GreetersBackend.Walk, :inform_on_channels, [id])
-    changeset
+    case Mix.env do
+      :test ->
+        Logger.debug "Informing about new walk"
+        changeset
+      _ ->
+        id = %{changeset| changes: %{}}
+        |> Ecto.Changeset.get_field(:id)
+        Task.Supervisor.start_child(Informer.Supervisor, GreetersBackend.Walk, :inform_on_channels, [id])
+        changeset
+    end
+
   end
 
-  def inform_on_channels(id, retry \\ 0) when retry < 3 do
+  def inform_on_channels(id, retry \\ 0)
+
+  def inform_on_channels(id, retry) when retry < 3 do
     case GreetersBackend.Repo.get(GreetersBackend.Walk, id) do
       nil ->
         Logger.error "Walk #{id} couldn't be fetched, retrying #{retry+1} time"
@@ -68,7 +77,7 @@ defmodule GreetersBackend.Walk do
 
   defp send_to_trello(changeset) do
     Logger.debug("Started request to Trello")
-    new_changeset = case GreetersBackend.Webhooks.Trello.create_new_card(changeset) do
+    case GreetersBackend.Webhooks.Trello.create_new_card(changeset) do
        {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
             Logger.info("Walk #{Ecto.Changeset.get_field(changeset, :id)} send to Trello")
             GreetersBackend.Flow.add_to_flow(changeset, "Send to trello")
@@ -84,7 +93,7 @@ defmodule GreetersBackend.Walk do
 
   defp send_to_slack(changeset) do
     Logger.debug("Started request to Slack")
-    new_changeset = case GreetersBackend.Webhooks.Slack.send_webhook(changeset) do
+    case GreetersBackend.Webhooks.Slack.send_webhook(changeset) do
       {:ok, %HTTPoison.Response{status_code: 200}} ->
             Logger.info("Walk #{Ecto.Changeset.get_field(changeset, :id)} send to Slack")
             GreetersBackend.Flow.add_to_flow(changeset, "Send to slack")
