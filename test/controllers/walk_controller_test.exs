@@ -26,10 +26,4 @@ defmodule GreetersBackend.WalkControllerTest do
     assert json_response(conn, 422)
   end
 
-  test "does not create resource and returns errors in json response", %{conn: conn} do
-    conn = post conn, walk_path(conn, :create), walk: @invalid_attrs
-    body = json_response(conn, 422)
-    assert "can't be blank" in body
-  end
-
 end
