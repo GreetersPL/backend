@@ -1,0 +1,18 @@
+image: trenpixster/elixir
+services:
+  - postgres
+
+variables:
+  POSTGRES_DB: greeters_backend_test
+
+before_script:
+  - echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+  -  apt-get update
+  -  DEBIAN_FRONTEND=noninteractive
+  -  apt-get install -y --force-yes postgresql-client
+  -  export MIX_ENV="test_gitlab"
+  -  mix do deps.get, deps.compile, compile
+
+unit_tests:
+  script:
+    - mix test

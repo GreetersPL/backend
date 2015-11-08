@@ -12,7 +12,6 @@ defmodule GreetersBackend.DateTest do
     assert changeset.valid?
   end
 
-  @tag :skip
   test "changeset with invalid attributes" do
     changeset = Date.changeset(%Date{}, @invalid_attrs)
     refute changeset.valid?

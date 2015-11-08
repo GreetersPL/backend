@@ -1,6 +1,7 @@
 # GreetersBackend
 
 [![Circle CI](https://circleci.com/gh/GreetersPL/engine.svg?style=svg)](https://circleci.com/gh/GreetersPL/engine)
+[![build status](https://gitlab.com/ci/projects/16220/status.png?ref=master)](https://gitlab.com/ci/projects/16220?ref=master)
 
 To start your Phoenix app:
 
